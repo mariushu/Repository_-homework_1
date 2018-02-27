@@ -2,10 +2,12 @@ public class Distanceprogram {
 
     public static void main(String[] args) {
 
-        Point p1 = new Point(3, 3, 5, 6 );
+        Point p1 = new Point  (1,1);
+
+        Point p2 = new Point  (2, 2);
 
 
-        System.out.println("Distance beetwen two points is " + p1.distance());
+        System.out.println("Distance between two points is " + p1.distance(p2));
 
     }
 }
