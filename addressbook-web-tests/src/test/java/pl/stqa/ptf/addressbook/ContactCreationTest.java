@@ -20,11 +20,12 @@ public class ContactCreationTest {
     public void setUp() throws Exception {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        wd.get("http://localhost/addressbook/");
+        login();
+
     }
 
-    @Test
-    public void testContactCreation() {
-        wd.get("http://localhost/addressbook/");
+    private void login() {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys("admin");
@@ -32,7 +33,22 @@ public class ContactCreationTest {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-        wd.findElement(By.linkText("add new")).click();
+    }
+
+
+    @Test
+    public void testContactCreation() {
+
+        intputContactCreation();
+        fillContactForm();
+        submitContactCreation();
+    }
+
+    private void submitContactCreation() {
+        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    }
+
+    private void fillContactForm() {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
         wd.findElement(By.name("firstname")).sendKeys("Martin");
@@ -45,7 +61,10 @@ public class ContactCreationTest {
         wd.findElement(By.name("email")).click();
         wd.findElement(By.name("email")).clear();
         wd.findElement(By.name("email")).sendKeys("test1@gmail.com");
-        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    }
+
+    private void intputContactCreation() {
+        wd.findElement(By.linkText("add new")).click();
     }
 
     @AfterMethod
