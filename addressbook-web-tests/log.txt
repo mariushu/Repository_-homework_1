@@ -19,7 +19,7 @@ Command duration or timeout: 0 milliseconds
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
 	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:279)
 	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
-	at pl.stqa.ptf.addressbook.GroupCreationTest.testGroupCreation(GroupCreationTest.java:27)
+	at pl.stqa.ptf.addressbook.tests.GroupCreationTest.testGroupCreation(GroupCreationTest.java:27)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
