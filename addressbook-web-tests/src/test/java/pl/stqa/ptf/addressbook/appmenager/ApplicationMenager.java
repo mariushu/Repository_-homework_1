@@ -1,6 +1,5 @@
 package pl.stqa.ptf.addressbook.appmenager;
 
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
