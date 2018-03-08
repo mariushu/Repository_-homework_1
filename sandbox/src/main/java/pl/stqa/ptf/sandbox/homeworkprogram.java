@@ -1,3 +1,5 @@
+package pl.stqa.ptf.sandbox;
+
 public class homeworkprogram {
 	
 	public static void main (String [] args) {

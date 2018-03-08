@@ -1,3 +1,5 @@
+package pl.stqa.ptf.sandbox;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
