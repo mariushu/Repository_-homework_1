@@ -1,12 +1,13 @@
 package pl.stqa.ptf.addressbook.tests;
 
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pl.stqa.ptf.addressbook.appmenager.ApplicationMenager;
 
 public class TestBase {
 
-  protected final ApplicationMenager app = new ApplicationMenager();
+  protected final ApplicationMenager app = new ApplicationMenager(BrowserType.IE);
 
   @BeforeMethod
   public void setUp() throws Exception {
