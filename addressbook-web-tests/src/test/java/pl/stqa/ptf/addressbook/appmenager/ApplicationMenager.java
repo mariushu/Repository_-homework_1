@@ -2,6 +2,7 @@ package pl.stqa.ptf.addressbook.appmenager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
@@ -27,11 +28,13 @@ public class ApplicationMenager {
       wd = new ChromeDriver();
     } else if (Objects.equals(browser, BrowserType.IE)) {
       wd = new InternetExplorerDriver();
+    } else if (Objects.equals(browser, BrowserType.FIREFOX)) {
+      wd = new FirefoxDriver();
     }
 
 
-    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    wd.get("http://localhost/addressbook/group.php");
+    wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);

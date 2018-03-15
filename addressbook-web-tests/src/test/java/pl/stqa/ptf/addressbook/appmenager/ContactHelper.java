@@ -12,11 +12,12 @@ public class ContactHelper extends HelperBase {
 
     super(wd);
   }
+
   public void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void fillContactForm(ContactData contactData, boolean creation ) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getName());
     type(By.name("lastname"), contactData.getSurname());
     type(By.name("mobile"), contactData.getTel());
@@ -39,7 +40,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactModification() {
-     click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    click(By.xpath("//div[@id='content']/form[1]/input[22]"));
   }
 
 
@@ -47,17 +48,38 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home page"));
   }
 
-  public void goToModificationPage() {
+  public void goToHomePage() {
     click(By.linkText("home"));
 
   }
 
-  public void deleteContact() {
-    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+  public void selectContactToDelete() {
+    if (!wd.findElement(By.name("selected[]")).isSelected()) {
+      click(By.name("selected[]"));}
+
+  }
+
+  public void deleteOnHome() {
+    click(By.xpath("//div/div[4]/form[2]/div[2]/input"));
+
   }
 
   public void closeAlert() {
     wd.switchTo().alert().accept();
+  }
+
+  public void createContact(ContactData cont) {
+    initContactCreation();
+    fillContactForm(cont, true);
+    submitContactCreation();
+    returnToHomePage();
+
+  }
+
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+
   }
 }
 
