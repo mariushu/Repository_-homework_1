@@ -8,30 +8,10 @@ public class ContactData {
   private final String surname;
   private final String tel;
   private final String mail;
-  private final String group;
+  private String group;
 
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "name='" + name + '\'' +
-            '}';
-  }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return Objects.equals(name, that.name) &&
-            Objects.equals(surname, that.surname);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(name, surname);
-  }
 
   public ContactData(String name, String surname, String tel, String mail, String group) {
     this.id = Integer.MAX_VALUE;
@@ -59,6 +39,7 @@ public class ContactData {
     this.id = id;
 
   }
+
   public String getName() {
     return name;
   }
@@ -77,5 +58,30 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", surname='" + surname + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(surname, that.surname);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, name, surname);
   }
 }

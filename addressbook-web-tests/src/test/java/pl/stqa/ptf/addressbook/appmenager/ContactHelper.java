@@ -20,6 +20,7 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
+    //click(By.name("submit"));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -77,9 +78,9 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void createContact(ContactData cont) {
+  public void createContact(ContactData contact) {
     initContactCreation();
-    fillContactForm(cont, true);
+    fillContactForm(contact, true);
     submitContactCreation();
     returnToHomePage();
 
@@ -98,6 +99,7 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement element : elements) {
+
       String name = element.findElement(By.xpath("td[3]")).getText();
       String surname = element.findElement(By.xpath("td[2]")).getText();
       int id = Integer.parseInt(element.findElement(By.cssSelector("td.center>input")).getAttribute("id"));
