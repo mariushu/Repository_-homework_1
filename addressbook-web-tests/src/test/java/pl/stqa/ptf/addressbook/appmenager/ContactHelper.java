@@ -13,6 +13,8 @@ import java.util.List;
 public class ContactHelper extends HelperBase {
 
 
+  private int contactToModify;
+
   public ContactHelper(WebDriver wd) {
 
     super(wd);
@@ -41,7 +43,8 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void initContactModification() {
+  public void initContactModification(int contactToModify) {
+    this.contactToModify = contactToModify;
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
