@@ -13,7 +13,7 @@ import java.util.List;
 public class ContactHelper extends HelperBase {
 
 
-  private int contactToModify;
+  //private int contactToModify;
 
   public ContactHelper(WebDriver wd) {
 
@@ -45,12 +45,12 @@ public class ContactHelper extends HelperBase {
 
 
 
-  public void initContactModification(int contactToModify) {
-    this.contactToModify = contactToModify;
+  public void initContactModification(int index) {
+    //this.contactToModify = contactToModify;
 
     //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr/td[8]/a/img"));
-    
+    //wd.findElements(By.xpath("//div/div[4]/form[2]/table/tbody/tr/td[8]/a/img"));
+    wd.findElements(By.cssSelector("img[alt='Edit']")).get(index).click();
   }
 
   public void submitContactModification() {
