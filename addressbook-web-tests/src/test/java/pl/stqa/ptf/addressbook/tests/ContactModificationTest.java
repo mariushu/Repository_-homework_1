@@ -12,9 +12,9 @@ public class ContactModificationTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.getContactHelper().goToHomePage();
-    if (!app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Martin", "Grey", "555 555 555 ", "test1@gmail.com", "[none]"));
+    app.contact().homePage();
+    if (app.contact().list().size() == 0) {
+      app.contact().create(new ContactData("Martin", "Grey", "555 555 555 ", "test1@gmail.com", "[none]"));
     }
   }
 
@@ -22,13 +22,11 @@ public class ContactModificationTest extends TestBase {
   @Test
   public void testContactModification() {
 
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
     int contactToModify = before.size() - 1;
     ContactData contact = new ContactData(before.get(contactToModify).getId(),"Martin01", "Grey02", "111 111 111", "test2@gmial.com", null);
-   //app.getContactHelper().selectContact(before.size() - 1);
-
-    app.getContactHelper().modifyContact(contactToModify, contact);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().modify(contactToModify, contact);
+    List<ContactData> after = app.contact().list();
 
 
     before.remove(contactToModify);
