@@ -16,7 +16,14 @@ public class ContactCreationTest extends TestBase{
     @Test
     public void testContactCreation() {
         List<ContactData> before = app.contact().list();
-        ContactData contact = new ContactData("Martin","Grey", null, null,"[none]");
+        ContactData contact = new ContactData();
+
+        contact.withName("Martin");
+        contact.withSurname("Grey");
+        contact.withTel("555 555 555");
+        contact.withMail("emial@gmail.com");
+        contact.withGroup("[none]");
+
         app.contact().create(contact);
         List<ContactData> after = app.contact().list();
 
