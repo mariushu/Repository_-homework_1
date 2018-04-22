@@ -44,7 +44,24 @@ public class ContactData {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(surname, that.surname);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, name, surname);
+  }
+
   public ContactData withGroup(String group) {
+
     this.group = group;
     return this;
   }
@@ -78,19 +95,4 @@ public class ContactData {
             '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(name, that.name) &&
-            Objects.equals(surname, that.surname);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, name, surname);
-  }
 }

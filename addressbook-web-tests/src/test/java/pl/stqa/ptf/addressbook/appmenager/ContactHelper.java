@@ -7,8 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pl.stqa.ptf.addressbook.model.ContactData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -45,12 +46,12 @@ public class ContactHelper extends HelperBase {
 
 
 
-  public void initContactModification(int index) {
+  public void initContactModification() {
     //this.contactToModify = contactToModify;
 
-    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     //wd.findElements(By.xpath("//div/div[4]/form[2]/table/tbody/tr/td[8]/a/img"));
-    wd.findElements(By.cssSelector("img[alt='Edit']")).get(index).click();
+    //wd.findElements(By.cssSelector("img[alt='Edit']")).get(index).click();
   }
 
   public void submitContactModification() {
@@ -67,14 +68,9 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  //public void selectContactToDelete() {
-   // if (!wd.findElement(By.name("selected[]")).isSelected()) {
-     // click(By.name("selected[]"));
-   // }
 
-
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void deleteOnHome() {
@@ -93,19 +89,23 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
 
   }
-  public void modify(int contactToModify, ContactData contact) {
-    initContactModification(contactToModify);
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
+    initContactModification();
     fillContactForm(contact, false);
     submitContactModification();
     returnToHomePage();
   }
 
-  public void delete(int contactToDelete) {
-    selectContact(contactToDelete);
+
+
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteOnHome();
     closeAlert();
     isAlertPresent();
   }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
 
@@ -114,8 +114,9 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
 
   }
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
     for (WebElement element : elements) {
 
@@ -126,6 +127,4 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
-
-
   }
