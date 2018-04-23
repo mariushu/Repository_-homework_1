@@ -33,8 +33,8 @@ public class ContactModificationTest extends TestBase {
     Contacts after = app.contact().all();
     assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contact)));
 
-    System.out.println(before);
-    System.out.println(after);
+    System.out.println(modifiedContact);
+    System.out.println(contact);
   }
 
 

@@ -45,12 +45,16 @@ public class ContactHelper extends HelperBase {
 
 
 
-  public void initContactModification() {
-    //this.contactToModify = contactToModify;
+  public void initContactModificationById(int id) {
+   //WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value=")))
 
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+
     //wd.findElements(By.xpath("//div/div[4]/form[2]/table/tbody/tr/td[8]/a/img"));
     //wd.findElements(By.cssSelector("img[alt='Edit']")).get(index).click();
+    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+
+    wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
+
   }
 
   public void submitContactModification() {
@@ -90,8 +94,8 @@ public class ContactHelper extends HelperBase {
 
   }
   public void modify(ContactData contact) {
-    selectContactById(contact.getId());
-    initContactModification();
+    //selectContactById(contact.getId());
+    initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     contactCache = null;
@@ -135,4 +139,6 @@ public class ContactHelper extends HelperBase {
     }
     return new Contacts(contactCache);
   }
-  }
+
+
+}
