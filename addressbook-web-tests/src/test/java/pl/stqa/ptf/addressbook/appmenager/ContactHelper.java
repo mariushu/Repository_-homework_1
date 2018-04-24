@@ -26,8 +26,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
-    type(By.name("firstname"), contactData.getName());
-    type(By.name("lastname"), contactData.getSurname());
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
     type(By.name("mobile"), contactData.getTel());
     type(By.name("email"), contactData.getMail());
 
@@ -135,17 +135,26 @@ public class ContactHelper extends HelperBase {
     }
 
     contactCache = new Contacts();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
-    for (WebElement element : elements) {
+    List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
+    for (WebElement row : rows) {
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
 
-      String name = element.findElement(By.xpath("td[3]")).getText();
-      String surname = element.findElement(By.xpath("td[2]")).getText();
-      int id = Integer.parseInt(element.findElement(By.cssSelector("td.center>input")).getAttribute("id"));
-      contactCache.add(new ContactData().withId(id).withName(name).withSurname(surname));
+      String lastName = cells.get(1).getText();
+
+      String firstName = cells.get(2).getText();
+
+      String address = cells.get(3).getText();
+
+      String email = cells.get(4).getText();
+
+      String[] phones = cells.get(5).getText().split("\n");
+      contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
+              .withAddress(address).withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2])
+              .withMail(email));
     }
-    return new Contacts(contactCache);
+    return contactCache;
   }
-
 
   public ContactData infoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
@@ -157,7 +166,7 @@ public class ContactHelper extends HelperBase {
 
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
-            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
-            
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+
   }
 }

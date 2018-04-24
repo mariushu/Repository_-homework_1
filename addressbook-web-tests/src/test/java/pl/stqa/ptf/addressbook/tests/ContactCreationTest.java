@@ -18,8 +18,8 @@ public class ContactCreationTest extends TestBase{
         Contacts before = app.contact().all();
         ContactData contact = new ContactData();
 
-        contact.withName("Martin");
-        contact.withSurname("Grey");
+        contact.withFirstname("Martin");
+        contact.withLastname("Grey");
         contact.withTel("555 555 555");
         contact.withMail("emial@gmail.com");
         contact.withGroup("[none]");
