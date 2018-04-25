@@ -16,8 +16,6 @@ public class ContactData {
   private String mobilePhone;
   private String workPhone;
   private String address;
-  private String address2;
-  private String allAddress;
   private String allPhones;
 
 
@@ -65,22 +63,7 @@ public class ContactData {
     this.address = address;
     return this;
   }
-  public String getAddress2 () {
-    return address2;
-  }
 
-  public ContactData withAddress2 (String address2){
-    this.address2 = address2;
-    return this;
-  }
-  public String getAllAddress() {
-    return allAddress;
-  }
-
-  public ContactData withAllAddress(String allAddress) {
-    this.allAddress = allAddress;
-    return this;
-  }
 
   public int getId() {
     return id;
@@ -180,8 +163,6 @@ public class ContactData {
             ", mobilePhone='" + mobilePhone + '\'' +
             ", workPhone='" + workPhone + '\'' +
             ", address='" + address + '\'' +
-            ", address2='" + address2 + '\'' +
-            ", address2='" + allAddress + '\'' +
             ", allPhones='" + allPhones + '\'' +
             '}';
   }
@@ -204,15 +185,14 @@ public class ContactData {
             Objects.equals(mobilePhone, that.mobilePhone) &&
             Objects.equals(workPhone, that.workPhone) &&
             Objects.equals(address, that.address) &&
-            Objects.equals(address2, that.address2) &&
-            Objects.equals(allAddress, that.allAddress) &&
+
             Objects.equals(allPhones, that.allPhones);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(id, name, surname, tel, mail, mail2, mail3, allMails, group, homePhone, mobilePhone, workPhone, address, address2, allAddress, allPhones);
+    return Objects.hash(id, name, surname, tel, mail, mail2, mail3, allMails, group, homePhone, mobilePhone, workPhone, address,  allPhones);
   }
 
 }
