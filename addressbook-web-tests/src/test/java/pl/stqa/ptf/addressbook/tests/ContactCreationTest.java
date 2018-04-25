@@ -21,6 +21,10 @@ public class ContactCreationTest extends TestBase{
         contact.withFirstname("Martin");
         contact.withLastname("Grey");
         contact.withTel("555 555 555");
+        contact.withHomePhone("+52 00 000 00");
+        contact.withMobilePhone("666111333");
+        contact.withWorkPhone("(63) 67733994");
+        contact.withAddress("Polna 12");
         contact.withMail("emial@gmail.com");
         contact.withGroup("[none]");
 
