@@ -53,11 +53,21 @@ public class ContactHelper extends HelperBase {
     //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     //wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
 
+
     WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
     WebElement row = checkbox.findElement(By.xpath("./../.."));
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
 
+
+  }
+
+  public void selectContactToDetailsById(int id) {
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(6).findElement(By.tagName("a")).click();
+    //wd.findElement(By.cssSelector("a[href*='view.php?id=" + id + "']")).click();
 
   }
 
@@ -178,4 +188,20 @@ public class ContactHelper extends HelperBase {
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
             .withMail(mail).withMail2(mail2).withMail3(email3).withAddress(address);
   }
+
+
+  public String infoFromDetailsPage(ContactData contact) {
+    selectContactToDetailsById(contact.getId());
+    String details = wd.findElement(By.id("content")).getText()
+            .replaceAll("H: ", "")
+            .replaceAll("M: ", "")
+            .replaceAll("W: ", "")
+            .replaceAll("\n", " ")
+            .replaceAll("   ", " ")
+            .replaceAll("  ", " ");
+    return details;
+  }
+
+
+
 }
