@@ -28,8 +28,11 @@ public class ContactHelper extends HelperBase {
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
+    attach(By.name("photo"), contactData.getPhoto());
     type(By.name("mobile"), contactData.getTel());
     type(By.name("email"), contactData.getMail());
+    type(By.name("address"), contactData.getAddress());
+
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
