@@ -1,0 +1,18 @@
+<list>
+  <pl.stqa.ptf.addressbook.model.ContactData>
+    <name>Jon</name>
+    <surname>Dick</surname>
+    <tel>444 333 222</tel>
+    <mail>cos@wp.pl</mail>
+    <group>[none]</group>
+    <address>Polna 14, Krakow</address>
+  </pl.stqa.ptf.addressbook.model.ContactData>
+  <pl.stqa.ptf.addressbook.model.ContactData>
+    <name>Mark</name>
+    <surname>Dark</surname>
+    <tel>111 333 444</tel>
+    <mail>tam@tlen.pl</mail>
+    <group>[none]</group>
+    <address>Rozana 18, Lublin</address>
+  </pl.stqa.ptf.addressbook.model.ContactData>
+</list>
