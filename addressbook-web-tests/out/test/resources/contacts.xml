@@ -1,20 +1,20 @@
 <list>
   <pl.stqa.ptf.addressbook.model.ContactData>
-    <id>2147483647</id>
     <name>Jon</name>
     <surname>Dick</surname>
     <tel>444 333 222</tel>
     <mail>cos@wp.pl</mail>
     <group>[none]</group>
     <address>Polna 14, Krakow</address>
+    <photo>src\test\resources\stru.png</photo>
   </pl.stqa.ptf.addressbook.model.ContactData>
   <pl.stqa.ptf.addressbook.model.ContactData>
-    <id>2147483647</id>
     <name>Mark</name>
     <surname>Dark</surname>
     <tel>111 333 444</tel>
     <mail>tam@tlen.pl</mail>
     <group>[none]</group>
     <address>Rozana 18, Lublin</address>
+    <photo>src\test\resources\stru.png</photo>
   </pl.stqa.ptf.addressbook.model.ContactData>
 </list>

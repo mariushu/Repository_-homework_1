@@ -6,6 +6,7 @@
     <mail>cos@wp.pl</mail>
     <group>[none]</group>
     <address>Polna 14, Krakow</address>
+    <photo>src\test\resources\stru.png</photo>
   </pl.stqa.ptf.addressbook.model.ContactData>
   <pl.stqa.ptf.addressbook.model.ContactData>
     <name>Mark</name>
@@ -14,5 +15,6 @@
     <mail>tam@tlen.pl</mail>
     <group>[none]</group>
     <address>Rozana 18, Lublin</address>
+    <photo>src\test\resources\stru.png</photo>
   </pl.stqa.ptf.addressbook.model.ContactData>
 </list>
