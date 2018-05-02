@@ -55,7 +55,7 @@ public class ContactDataGenerator {
     String xml = xstream.toXML(contacts);
     try(Writer writer = new FileWriter(file)) {
       writer.write(xml);
-      //writer.close();
+
     }
   }
 
