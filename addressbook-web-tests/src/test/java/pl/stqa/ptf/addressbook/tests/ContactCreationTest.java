@@ -30,16 +30,16 @@ public class ContactCreationTest extends TestBase{
             return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
         }
         }
-        
+
 
 
     @Test (dataProvider = "validContactsFromXml")
-    public void testContactCreation (ContactData contacts) {
+    public void testContactCreation (ContactData contact) {
         File photo = new File("src/test/resources/stru.png");
         //Contacts before = app.contact().all();
 
 
-       ContactData contact = new ContactData().withFirstname("").withLastname("").withPhoto(photo)
+       ContactData contacts = new ContactData().withFirstname("").withLastname("").withPhoto(photo)
                .withAddress("").withTel("").withMail("").withGroup("");    //dane z pliku xml
                 /*.withFirstname("Martin")
                 .withLastname("Grey")
@@ -52,8 +52,8 @@ public class ContactCreationTest extends TestBase{
                 .withPhoto(photo)
                 .withGroup("[none]");*/
 
-        /*app.contact().create(contact);
-        assertThat(app.contact().count(), equalTo(before.size() + 1));
+        app.contact().create(contact);
+        /*assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.contact().all();
 
         assertThat(after, equalTo(
