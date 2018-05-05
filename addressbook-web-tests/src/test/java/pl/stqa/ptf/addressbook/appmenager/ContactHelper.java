@@ -167,7 +167,7 @@ public class ContactHelper extends HelperBase {
 
 
       contactCache.add(new ContactData().withId(id).withFirstname(firstName).withLastname(lastName)
-              .withAddress(address).withAllPhones(allPhones).withAllMail(allMails));
+              .withAddress(address).withAllPhones(allPhones).withAllMails(allMails));
       //.withMail(mail).withMail2(mail2).withMail3(mail3)
     }
 

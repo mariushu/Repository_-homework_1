@@ -129,7 +129,7 @@ public class ContactData {
   public String getAllMails() {
     return allMails;
   }
-  public ContactData withAllMail(String allMails) {
+  public ContactData withAllMails(String allMails) {
     this.allMails = allMails;
     return this;
   }
