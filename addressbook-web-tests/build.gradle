@@ -12,6 +12,7 @@ dependencies {
     compile 'org.gosu-lang.gosu.managed:gw-jcommander:1.48'
     compile 'com.thoughtworks.xstream:xstream:1.4.10'
     compile 'com.google.code.gson:gson:2.8.3'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
 
 }
 
