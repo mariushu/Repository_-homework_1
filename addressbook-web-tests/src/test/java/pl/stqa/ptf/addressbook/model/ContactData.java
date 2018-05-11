@@ -77,6 +77,34 @@ public class ContactData {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(name, that.name) &&
+            Objects.equals(surname, that.surname) &&
+            Objects.equals(tel, that.tel) &&
+            Objects.equals(mail, that.mail) &&
+            Objects.equals(mail2, that.mail2) &&
+            Objects.equals(mail3, that.mail3) &&
+            Objects.equals(allMails, that.allMails) &&
+            Objects.equals(group, that.group) &&
+            Objects.equals(homePhone, that.homePhone) &&
+            Objects.equals(mobilePhone, that.mobilePhone) &&
+            Objects.equals(workPhone, that.workPhone) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(allPhones, that.allPhones) &&
+            Objects.equals(photo, that.photo);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, name, surname, tel, mail, mail2, mail3, allMails, group, homePhone, mobilePhone, workPhone, address, allPhones, photo);
+  }
+
   public String getMobilePhone () {
     return mobilePhone;
   }
@@ -204,34 +232,6 @@ public class ContactData {
             ", address='" + address + '\'' +
             ", allPhones='" + allPhones + '\'' +
             '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(name, that.name) &&
-            Objects.equals(surname, that.surname) &&
-            Objects.equals(tel, that.tel) &&
-            Objects.equals(mail, that.mail) &&
-            Objects.equals(mail2, that.mail2) &&
-            Objects.equals(mail3, that.mail3) &&
-            Objects.equals(allMails, that.allMails) &&
-            Objects.equals(group, that.group) &&
-            Objects.equals(homePhone, that.homePhone) &&
-            Objects.equals(mobilePhone, that.mobilePhone) &&
-            Objects.equals(workPhone, that.workPhone) &&
-            Objects.equals(address, that.address) &&
-
-            Objects.equals(allPhones, that.allPhones);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, name, surname, tel, mail, mail2, mail3, allMails, group, homePhone, mobilePhone, workPhone, address,  allPhones);
   }
 
 }

@@ -28,7 +28,7 @@ public class ContactHelper extends HelperBase {
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
-    attach(By.name("photo"), contactData.getPhoto());
+    //attach(By.name("photo"), contactData.getPhoto());
     type(By.name("mobile"), contactData.getTel());
     type(By.name("email"), contactData.getMail());
     type(By.name("address"), contactData.getAddress());
@@ -53,14 +53,14 @@ public class ContactHelper extends HelperBase {
 
     //wd.findElements(By.xpath("//div/div[4]/form[2]/table/tbody/tr/td[8]/a/img"));
     //wd.findElements(By.cssSelector("img[alt='Edit']")).get(index).click();
-    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     //wd.findElement(By.cssSelector("a[href*='edit.php?id=" + id + "']")).click();
 
 
-    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    /*WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
     WebElement row = checkbox.findElement(By.xpath("./../.."));
     List<WebElement> cells = row.findElements(By.tagName("td"));
-    cells.get(7).findElement(By.tagName("a")).click();
+    cells.get(7).findElement(By.tagName("a")).click();*/
 
 
   }
@@ -97,6 +97,11 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div/div[4]/form[2]/div[2]/input"));
 
   }
+  public void selectContactToDelete() {
+    if (!wd.findElement(By.name("selected[]")).isSelected()) {
+      click(By.name("selected[]"));
+    }
+  }
 
   public void closeAlert() {
     wd.switchTo().alert().accept();
@@ -112,7 +117,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(ContactData contact) {
-    //selectContactById(contact.getId());
+//    selectContactById(contact.getId());
     initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
@@ -122,7 +127,7 @@ public class ContactHelper extends HelperBase {
 
 
   public void delete(ContactData contact) {
-    selectContactById(contact.getId());
+    selectContactToDelete();
     deleteOnHome();
     closeAlert();
     contactCache = null;
