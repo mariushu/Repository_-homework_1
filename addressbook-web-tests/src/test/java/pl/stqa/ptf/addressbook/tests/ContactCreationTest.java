@@ -38,34 +38,20 @@ public class ContactCreationTest extends TestBase{
 
 
     @Test (dataProvider = "validContactsFromXml")
-    public void testContactCreation (ContactData contact) {
-        File photo = new File("src/test/resources/stru.png");
+    public void testContactCreation (ContactData contact) throws IOException {
+
         Contacts before = app.db().contacts();
 
-
-       ContactData contacts = new ContactData().withFirstname("").withLastname("").withPhoto(photo)
-               .withAddress("").withTel("").withMail("").withGroup("");    //dane z pliku xml
-                /*.withFirstname("Martin")
-                .withLastname("Grey")
-                .withTel("555 555 555")
-                .withHomePhone("+52 00 000 00")
-                .withMobilePhone("666111333")
-                .withWorkPhone("(63) 67733994")
-                .withAddress("Polna")
-                .withMail("emial@gmail.com")
-                .withPhoto(photo)
-                .withGroup("[none]");*/
-
         app.contact().create(contact);
-        assertThat(app.contact().count(), equalTo(before.size() + 1));
+
         Contacts after = app.db().contacts();
 
-        assertThat(after, equalTo(
-                before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
-
-
+        assertThat(after.size(), equalTo(before.size() + 1));
     }
-        @Test (enabled = false) // test na znalezienie sciezki bezwzglednej
+
+
+
+    @Test (enabled = false) // test na znalezienie sciezki bezwzglednej
     public void testCurrentDir(){
         File currentDir = new File (".");
         System.out.println(currentDir.getAbsolutePath());

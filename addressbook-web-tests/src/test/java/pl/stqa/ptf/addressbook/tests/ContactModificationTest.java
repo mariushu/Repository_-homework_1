@@ -7,6 +7,9 @@ import pl.stqa.ptf.addressbook.model.Contacts;
 
 import java.io.File;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 public class ContactModificationTest extends TestBase {
 
   @BeforeMethod
@@ -20,22 +23,21 @@ public class ContactModificationTest extends TestBase {
 
   @Test
   public void testContactModification() {
-    File photo = new File("src/test/resources/stru.png");
+
     Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
+    File photo = new File("src/test/resources/stru.png");
 
-    app.contact().homePage();
     ContactData contact = new ContactData()
-            .withId(modifiedContact.getId()).withFirstname("Martin01").withLastname("Grey02").withPhoto(photo).withHomePhone("23232").withMobilePhone("2323232342").withWorkPhone("34345534").withMail("costamaaaa@wp.pl");
-    //app.contact().homePage();
-    app.contact().modify(contact);
-    //app.contact().homePage();
-    //assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.db().contacts();
-    //assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contact)));
+            .withId(modifiedContact.getId()).withFirstname("Martin01").withLastname("Grey02").withPhoto(photo).withHomePhone("23232").withMobilePhone("2323232342").withWorkPhone("34345534").withMail("costamaaaa@wp.pl").withPhoto(photo);
 
-    //System.out.println(modifiedContact);
-    //System.out.println(contact);
+    app.contact().modify(contact);
+
+
+    Contacts after = app.db().contacts();
+    assertThat(after.size(), equalTo(before.size()));
+
+
   }
 
 

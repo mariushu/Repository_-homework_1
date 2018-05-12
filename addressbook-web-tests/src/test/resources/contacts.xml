@@ -8,13 +8,5 @@
     <address>Polna 14, Krakow</address>
     <photo>src\test\resources\stru.png</photo>
   </pl.stqa.ptf.addressbook.model.ContactData>
-  <pl.stqa.ptf.addressbook.model.ContactData>
-    <name>Mark</name>
-    <surname>Dark</surname>
-    <tel>111 333 444</tel>
-    <mail>tam@tlen.pl</mail>
-    <group>[none]</group>
-    <address>Rozana 18, Lublin</address>
-    <photo>src\test\resources\stru.png</photo>
-  </pl.stqa.ptf.addressbook.model.ContactData>
+
 </list>

@@ -15,11 +15,11 @@ public class ContactData {
   @XStreamOmitField
 
   @Id
-  @Column (name = "id")
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
-  @Column (name = "firstname")
+  @Column(name = "firstname")
   private String name;
-  @Column (name = "lastname")
+  @Column(name = "lastname")
   private String surname;
   @Transient
   private String tel;
@@ -33,21 +33,21 @@ public class ContactData {
   private String allMails;
   @Transient
   private String group;
-  @Column (name = "home")
-  @Type(type ="text")
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
-  @Column (name = "mobile")
-  @Type(type ="text")
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
-  @Column (name = "work")
-  @Type(type ="text")
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
   @Transient
   private String address;
   @Transient
   private String allPhones;
-  @Column (name = "photo")
-  @Type(type ="text")
+  @Column(name = "photo")
+  @Type(type = "text")
   private String photo;
 
   public File getPhoto() {
@@ -68,11 +68,11 @@ public class ContactData {
     return this;
   }
 
-  public String getHomePhone () {
+  public String getHomePhone() {
     return homePhone;
   }
 
-  public ContactData withHomePhone (String homePhone){
+  public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
     return this;
   }
@@ -105,28 +105,29 @@ public class ContactData {
     return Objects.hash(id, name, surname, tel, mail, mail2, mail3, allMails, group, homePhone, mobilePhone, workPhone, address, allPhones, photo);
   }
 
-  public String getMobilePhone () {
+  public String getMobilePhone() {
     return mobilePhone;
   }
 
-  public ContactData withMobilePhone (String mobilePhone){
+  public ContactData withMobilePhone(String mobilePhone) {
     this.mobilePhone = mobilePhone;
     return this;
   }
 
-  public String getWorkPhone () {
+  public String getWorkPhone() {
     return workPhone;
   }
 
-  public ContactData withWorkPhone (String workPhone){
+  public ContactData withWorkPhone(String workPhone) {
     this.workPhone = workPhone;
     return this;
   }
-  public String getAddress () {
+
+  public String getAddress() {
     return address;
   }
 
-  public ContactData withAddress (String address){
+  public ContactData withAddress(String address) {
     this.address = address;
     return this;
   }
@@ -140,6 +141,7 @@ public class ContactData {
     this.id = id;
     return this;
   }
+
   public ContactData withId(int id) {
     this.id = id;
     return this;
@@ -166,16 +168,19 @@ public class ContactData {
     return this;
   }
 
-    public String getMail2 () {
+  public String getMail2() {
     return mail2;
   }
+
   public ContactData withMail2(String mail2) {
     this.mail2 = mail2;
     return this;
   }
-    public String getMail3 () {
+
+  public String getMail3() {
     return mail3;
   }
+
   public ContactData withMail3(String mail3) {
     this.mail3 = mail3;
     return this;
@@ -184,6 +189,7 @@ public class ContactData {
   public String getAllMails() {
     return allMails;
   }
+
   public ContactData withAllMails(String allMails) {
     this.allMails = allMails;
     return this;
@@ -214,6 +220,14 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
+
+
+
+
+
+
+
   @Override
   public String toString() {
     return "ContactData{" +
