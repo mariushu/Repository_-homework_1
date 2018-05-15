@@ -5,7 +5,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table (name = "addressbook")
@@ -31,8 +33,7 @@ public class ContactData {
   private String mail3;
   @Transient
   private String allMails;
-  @Transient
-  private String group;
+
   @Column(name = "home")
   @Type(type = "text")
   private String homePhone;
@@ -49,6 +50,12 @@ public class ContactData {
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups =new HashSet<GroupData>();
+
 
   public File getPhoto() {
     return new File(photo);
@@ -90,7 +97,6 @@ public class ContactData {
             Objects.equals(mail2, that.mail2) &&
             Objects.equals(mail3, that.mail3) &&
             Objects.equals(allMails, that.allMails) &&
-            Objects.equals(group, that.group) &&
             Objects.equals(homePhone, that.homePhone) &&
             Objects.equals(mobilePhone, that.mobilePhone) &&
             Objects.equals(workPhone, that.workPhone) &&
@@ -102,7 +108,7 @@ public class ContactData {
   @Override
   public int hashCode() {
 
-    return Objects.hash(id, name, surname, tel, mail, mail2, mail3, allMails, group, homePhone, mobilePhone, workPhone, address, allPhones, photo);
+    return Objects.hash(id, name, surname, tel, mail, mail2, mail3, allMails, homePhone, mobilePhone, workPhone, address, allPhones, photo);
   }
 
   public String getMobilePhone() {
@@ -195,11 +201,7 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
 
-    this.group = group;
-    return this;
-  }
 
   public String getFirstname() {
     return name;
@@ -217,16 +219,9 @@ public class ContactData {
     return mail;
   }
 
-  public String getGroup() {
-    return group;
+  public Groups getGroups() {
+    return new Groups(groups);
   }
-
-
-
-
-
-
-
 
   @Override
   public String toString() {
@@ -239,7 +234,6 @@ public class ContactData {
             ", mail2='" + mail2 + '\'' +
             ", mail3='" + mail3 + '\'' +
             ", allMails='" + allMails + '\'' +
-            ", group='" + group + '\'' +
             ", homePhone='" + homePhone + '\'' +
             ", mobilePhone='" + mobilePhone + '\'' +
             ", workPhone='" + workPhone + '\'' +

@@ -71,7 +71,7 @@ public class ContactDataGenerator {
     File[] photos = {new File("src/test/resources/stru.png"),new File("src/test/resources/stru.png")};
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withFirstname(firstname[i]).withLastname(lastname[i])
-      .withAddress(address[i]).withTel(tel[i]).withMail(mail[i]).withGroup(group).withPhoto(photos[i]));
+      .withAddress(address[i]).withTel(tel[i]).withMail(mail[i]).withPhoto(photos[i])); //.withGroup(group)));
     }
     return contacts;
   }
