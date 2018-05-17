@@ -4,7 +4,7 @@ import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pl.stqa.ptf.addressbook.model.ContactData;
-import pl.stqa.ptf.addressbook.model.Contacts;
+import pl.stqa.ptf.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,9 +13,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase{
 
@@ -37,7 +34,7 @@ public class ContactCreationTest extends TestBase{
 
 
 
-    @Test (dataProvider = "validContactsFromXml")
+    /*@Test (dataProvider = "validContactsFromXml")
     public void testContactCreation (ContactData contact) throws IOException {
 
         Contacts before = app.db().contacts();
@@ -47,6 +44,21 @@ public class ContactCreationTest extends TestBase{
         Contacts after = app.db().contacts();
 
         assertThat(after.size(), equalTo(before.size() + 1));
+    }*/
+
+    @Test
+    public void testContactCreation () {
+        Groups groups = app.db().groups();
+        ContactData newContact = new ContactData().withFirstname("Martin").withLastname("Grey").withAddress("Lwowksa").withHomePhone("345345345")
+                .withMobilePhone("12345").withWorkPhone("12345").withMail("cos@wp.pl")
+                .inGroup(groups.iterator().next());
+        app.contact().homePage();
+        app.contact().initContactCreation();
+        app.contact().fillContactForm(newContact, true);
+        app.contact().submitContactCreation();
+        app.contact().returnToHomePage();
+
+
     }
 
 

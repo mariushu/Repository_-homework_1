@@ -3,8 +3,11 @@ package pl.stqa.ptf.addressbook.appmenager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import pl.stqa.ptf.addressbook.model.ContactData;
 import pl.stqa.ptf.addressbook.model.Contacts;
+import pl.stqa.ptf.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -26,16 +29,19 @@ public class ContactHelper extends HelperBase {
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
-    attach(By.name("photo"), contactData.getPhoto());
+    //attach(By.name("photo"), contactData.getPhoto());
     type(By.name("mobile"), contactData.getTel());
     type(By.name("email"), contactData.getMail());
     type(By.name("address"), contactData.getAddress());
 
 
     if (creation) {
-      //new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-   // } else {
-    //  Assert.assertFalse(isElementPresent(By.name("new_group")));
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
 
   }
@@ -208,6 +214,18 @@ public class ContactHelper extends HelperBase {
     return details;
   }
 
+  public void addToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    new Select(wd.findElement(By.name("to_group"))).selectByValue(Integer.toString(group.getId()));
+    click(By.name("add"));
+    homePage();
+  }
 
+  public void deleteFromGroup(ContactData contact, GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByValue(Integer.toString(group.getId()));
+    selectContactById(contact.getId());
+    click(By.name("remove"));
+    homePage();
+  }
 
 }
