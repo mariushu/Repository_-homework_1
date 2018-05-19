@@ -27,7 +27,6 @@ public class ApplicationMenager {
 
   }
 
-
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/tests/resources/%s.properties", target))));
@@ -40,14 +39,10 @@ public class ApplicationMenager {
       wd = new FirefoxDriver();
     }
 
-
     wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));
 
-
   }
-
-
 
   public void stop() {
     wd.quit();

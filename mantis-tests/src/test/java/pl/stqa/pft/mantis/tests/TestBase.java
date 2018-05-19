@@ -9,9 +9,6 @@ import pl.stqa.pft.mantis.appmanager.ApplicationMenager;
 
 public class TestBase {
 
-
-
-
   protected static final ApplicationMenager app
           = new ApplicationMenager(System.getProperty("browser", BrowserType.CHROME));
 
@@ -25,10 +22,4 @@ public class TestBase {
     app.stop();
   }
 
-
-
-
-
-
-}
 }
