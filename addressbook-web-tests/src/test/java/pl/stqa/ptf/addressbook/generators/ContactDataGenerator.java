@@ -68,7 +68,7 @@ public class ContactDataGenerator {
     String[]tel = {"444 333 222", "111 333 444"};
     String[]mail = {"cos@wp.pl", "tam@tlen.pl"};
     String group = "[none]";
-    File[] photos = {new File("src/test/resources/stru.png"),new File("src/test/resources/stru.png")};
+    File[] photos = {new File("src/tests/resources/stru.png"),new File("src/tests/resources/stru.png")};
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withFirstname(firstname[i]).withLastname(lastname[i])
       .withAddress(address[i]).withTel(tel[i]).withMail(mail[i]).withPhoto(photos[i])); //.withGroup(group)));

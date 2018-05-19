@@ -18,7 +18,7 @@ public class ContactCreationTest extends TestBase{
 
     @DataProvider
     public Iterator<Object[]> validContactsFromXml() throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/tests/resources/contacts.xml")))) {
             String xml = "";
             String line = reader.readLine();
             while (line != null) {
@@ -63,11 +63,11 @@ public class ContactCreationTest extends TestBase{
 
 
 
-    @Test (enabled = false) // test na znalezienie sciezki bezwzglednej
+    @Test (enabled = false) // tests na znalezienie sciezki bezwzglednej
     public void testCurrentDir(){
         File currentDir = new File (".");
         System.out.println(currentDir.getAbsolutePath());
-        File photo = new File("src/test/resources/stru.png");
+        File photo = new File("src/tests/resources/stru.png");
         System.out.println(photo.getAbsolutePath());
         System.out.println(photo.exists());
         }

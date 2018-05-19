@@ -26,7 +26,7 @@ public class ContactModificationTest extends TestBase {
 
     Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
-    File photo = new File("src/test/resources/stru.png");
+    File photo = new File("src/tests/resources/stru.png");
 
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId()).withFirstname("Martin01").withLastname("Grey02").withPhoto(photo).withHomePhone("23232").withMobilePhone("2323232342").withWorkPhone("34345534").withMail("costamaaaa@wp.pl").withPhoto(photo);

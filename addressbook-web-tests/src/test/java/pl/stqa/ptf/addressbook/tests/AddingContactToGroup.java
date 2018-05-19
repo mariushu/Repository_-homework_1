@@ -16,7 +16,7 @@ public class AddingContactToGroup extends TestBase{
 
     if  (app.db().groups().size() == 0) {
       app.goTo().GroupPage();
-      app.group().create(new GroupData().withName("test 0"));
+      app.group().create(new GroupData().withName("tests 0"));
     }
 
     if (app.db().contacts().size() == 0) {
@@ -28,7 +28,7 @@ public class AddingContactToGroup extends TestBase{
 
   /*@Test
   public void testAddingContactToGroup() { create new group and add contact
-    GroupData groupToAdd = new GroupData().withName("test 0").withHeader("header").withFooter("footer");
+    GroupData groupToAdd = new GroupData().withName("tests 0").withHeader("header").withFooter("footer");
     app.goTo().GroupPage();
     app.group().create(groupToAdd);
     groupToAdd.withId(app.db().groups().stream().mapToInt((g) -> g.getId()).max().getAsInt());
