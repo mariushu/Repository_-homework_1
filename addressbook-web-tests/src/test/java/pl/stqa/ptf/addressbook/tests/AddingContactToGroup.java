@@ -48,16 +48,17 @@ public class AddingContactToGroup extends TestBase{
 
   ContactData contact = app.db().contacts().iterator().next();
   Groups groupsBefore = contact.getGroups();
-    if (groupsBefore.size() == 0) {
+    if (groupsBefore.size() != 0) {
       groups = app.db().groups().iterator().next();
     app.contact().addToGroup(contact, groups);
     contact = app.db().contactById(contact.getId());
     groupsBefore = contact.getGroups();
-  }
+    } else {
+      groups = groupsBefore.iterator().next();}
 
   contact = app.db().contactById(contact.getId());
   Groups groupsAfter = contact.getGroups();
-  assertThat(groupsAfter, equalTo(groupsBefore));
+  assertThat(groupsAfter, equalTo(groupsBefore.withAdded(groups)));
 }
 
 
