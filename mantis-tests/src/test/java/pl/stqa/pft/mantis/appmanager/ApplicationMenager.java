@@ -14,10 +14,10 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationMenager {
-
   private final Properties properties;
-  WebDriver wd;
+  private WebDriver wd;
   private String browser;
+  private RegistrationHelper registrationHelper;
 
 
   public ApplicationMenager(String browser) {
@@ -29,25 +29,50 @@ public class ApplicationMenager {
 
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
-    properties.load(new FileReader(new File(String.format("src/tests/resources/%s.properties", target))));
+    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-    if (Objects.equals(browser, BrowserType.CHROME)) {
-      wd = new ChromeDriver();
-    } else if (Objects.equals(browser, BrowserType.IE)) {
-      wd = new InternetExplorerDriver();
-    } else if (Objects.equals(browser, BrowserType.FIREFOX)) {
-      wd = new FirefoxDriver();
-    }
 
-    wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    wd.get(properties.getProperty("web.baseUrl"));
 
   }
 
   public void stop() {
-    wd.quit();
+    if (wd != null) {
+      wd.quit();
+    }
   }
 
 
+  public String getProperty(String key) {
+    return properties.getProperty(key);
   }
+
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+
+  public RegistrationHelper registration() {
+    if (registrationHelper == null) {
+      registrationHelper = new RegistrationHelper(this);
+
+    }
+    return registrationHelper;
+  }
+  public WebDriver getDriver() {
+    if (wd == null){
+      if (Objects.equals(browser, BrowserType.CHROME)) {
+        wd = new ChromeDriver();
+      } else if (Objects.equals(browser, BrowserType.IE)) {
+        wd = new InternetExplorerDriver();
+      } else if (Objects.equals(browser, BrowserType.FIREFOX)) {
+        wd = new FirefoxDriver();
+      }
+
+      wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      wd.get(properties.getProperty("web.baseUrl"));
+
+    }
+
+    return wd;
+  }
+}
 
