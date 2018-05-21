@@ -48,7 +48,8 @@ public class AddingContactToGroup extends TestBase{
 
   ContactData contact = app.db().contacts().iterator().next();
   Groups groupsBefore = contact.getGroups();
-    if (groupsBefore.size() != 0) {
+
+    if (groupsBefore.size () < app.db().groups().size()) {
       groups = app.db().groups().iterator().next();
     app.contact().addToGroup(contact, groups);
     contact = app.db().contactById(contact.getId());

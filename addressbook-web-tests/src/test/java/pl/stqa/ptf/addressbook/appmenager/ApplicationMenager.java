@@ -35,7 +35,7 @@ public class ApplicationMenager {
 
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
-    properties.load(new FileReader(new File(String.format("src/tests/resources/%s.properties", target))));
+    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
     dBhelper = new DBhelper();
     if (Objects.equals(browser, BrowserType.CHROME)) {
       wd = new ChromeDriver();
