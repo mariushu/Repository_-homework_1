@@ -1,11 +1,12 @@
 package pl.stqa.pft.mantis.tests;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.stqa.pft.mantis.models.MailMessage;
 import ru.lanwen.verbalregex.VerbalExpression;
+import javax.mail.MessagingException;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,9 +26,9 @@ public class RegistrationTests extends TestBase{
     long now = System.currentTimeMillis();
     String user = String.format("user%s", now);
     String password = "password";
-    String email = String.format("user%s@localhost.localdomain", now);
+    String email = String.format("user%s@localhost", now);
     app.registration().start(user, email);
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+    List<MailMessage> mailMessages = app.mail().waitForMail(2, 40000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
 
     app.registration().finish(confirmationLink, password);

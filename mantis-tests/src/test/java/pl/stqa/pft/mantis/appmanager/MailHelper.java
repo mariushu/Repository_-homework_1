@@ -1,10 +1,10 @@
 package pl.stqa.pft.mantis.appmanager;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.subethamail.wiser.Wiser;
 import org.subethamail.wiser.WiserMessage;
 import pl.stqa.pft.mantis.models.MailMessage;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.List;
@@ -19,7 +19,7 @@ public class MailHelper {
     wiser = new Wiser(); //mail server
   }
 
-  public List<MailMessage> waitForMail(int count, long timeout) throws MessagingException, IOException {
+  public List<MailMessage> waitForMail(int count, long timeout) throws MessagingException, IOException{
     long start = System.currentTimeMillis();
     while (System.currentTimeMillis() < start + timeout) {
       if (wiser.getMessages().size() >= count) {
@@ -31,10 +31,10 @@ public class MailHelper {
         e.printStackTrace();
       }
     }
-    throw new Error("No mail");
+    throw new Error("No mail : (");
   }
 
-  private MailMessage toModelMail(WiserMessage m) {
+  private static MailMessage toModelMail(WiserMessage m) {
     try {
       MimeMessage mm = m.getMimeMessage();
       return new MailMessage(mm.getAllRecipients()[0].toString(), (String) mm.getContent());
