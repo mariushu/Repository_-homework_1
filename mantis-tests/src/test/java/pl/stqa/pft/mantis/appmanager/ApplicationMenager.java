@@ -20,7 +20,8 @@ public class ApplicationMenager {
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
-
+  private NavigateHelper navigateHelper;
+  private UserActionsHelper userActions;
 
   public ApplicationMenager(String browser) {
     this.browser = browser;
@@ -90,5 +91,18 @@ public class ApplicationMenager {
     }
     return mailHelper;
   }
+
+  public NavigateHelper navigate() {
+    if (navigateHelper == null) {
+      navigateHelper = new NavigateHelper(this);
+    }
+    return navigateHelper;
+  }
+  public UserActionsHelper userActions() {
+    if (userActions == null) {
+      userActions = new UserActionsHelper(this);
+      }
+      return userActions;
+        }
 }
 
