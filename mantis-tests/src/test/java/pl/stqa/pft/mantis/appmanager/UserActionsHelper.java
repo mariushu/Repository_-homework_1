@@ -28,6 +28,6 @@ public class UserActionsHelper extends HelperBase {
     wait.until(ExpectedConditions.elementToBeClickable(By.name("password")));
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
-    click(By.cssSelector("button[type='submit']"));
+    click(By.cssSelector("input[value='Update User']"));
   }
 }
