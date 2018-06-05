@@ -23,6 +23,7 @@ public class ApplicationMenager {
   private NavigateHelper navigateHelper;
   private UserActionsHelper userActions;
   private DbHelper dbHelper;
+  private JamesHelper jamesHelper;
 
   public ApplicationMenager(String browser) {
     this.browser = browser;
@@ -111,6 +112,14 @@ public class ApplicationMenager {
       dbHelper = new DbHelper(this);
     }
     return dbHelper;
+  }
+
+  public JamesHelper james() {
+
+    if (jamesHelper == null) {
+      jamesHelper = new JamesHelper(this);
+    }
+    return jamesHelper;
   }
 }
 
