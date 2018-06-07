@@ -1,4 +1,4 @@
-package pl.stqa.ptf.soap;
+package pl.stqa.ptf;
 
 import com.buzzbuzhome.BBHLocation;
 import com.buzzbuzhome.GeoIP;
