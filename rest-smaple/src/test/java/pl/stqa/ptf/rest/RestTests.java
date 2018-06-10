@@ -13,7 +13,7 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class RestTests {
+public class RestTests extends TestBase{
 
   @BeforeClass
   public void init() {
@@ -23,6 +23,7 @@ public class RestTests {
 
   @Test
   public void testCreateIssue() throws IOException {
+    skipIfNotFixed(4);
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
     int issueId = createIssue(newIssue);
@@ -33,10 +34,6 @@ public class RestTests {
 
 
   private Set<Issue> getIssues() throws IOException {
-    /*String json = getExecutor().execute(Request.Get("http://bugify.stqa.ru/api/issues.json"))
-            .returnContent().asString();*/ //dodanie bibioteki RestAssured
-
-
     String json = RestAssured.get("http://bugify.stqa.ru/api/issues.json").asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
@@ -44,16 +41,9 @@ public class RestTests {
     }.getType());
   }
 
-  /*private Executor getExecutor() {
-    return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
-  }*/ //dodanie bibioteki RestAssured
+
 
   private int createIssue(Issue newIssue) throws IOException {
-    /*String json = getExecutor().execute(Request.Post("http://bugify.stqa.ru/api/issues.json")
-            .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
-                    new BasicNameValuePair("description", newIssue.getDescription())))
-            .returnContent().asString();*/ //dodanie bibioteki RestAssured
-
     String json = RestAssured.given()
             .parameter("subject", newIssue.getSubject())
             .parameter("description", newIssue.getDescription())
