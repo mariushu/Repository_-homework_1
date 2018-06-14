@@ -3,7 +3,9 @@
 <suite name="Suite1" verbose="1" >
     <test name="Groups" >
         <classes>
+            <class name="pl.stqa.ptf.addressbook.tests.GroupCreationTest" />
             <class name="pl.stqa.ptf.addressbook.tests.GroupModificationTest" />
+            <class name="pl.stqa.ptf.addressbook.tests.GroupDeletionTest" />
         </classes>
     </test>
 </suite>
